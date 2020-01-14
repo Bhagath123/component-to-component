@@ -1,0 +1,25 @@
+<mat-card>
+
+  <form  (submit)="onAddevent(postD)" #postD="ngForm">
+    <mat-form-field>
+      <input matInput type="text" name="title" ngModel  required  minlength=4 #text="ngModel" placeholder="post title">
+      <mat-error *ngIf="text.invalid">Please enter the correct input</mat-error>
+    </mat-form-field>
+
+      <mat-form-field>
+        <textarea matInput rows="6" cols="10" name="content" ngModel required minlength=15 #content="ngModel" placeholder="post Content">
+
+        </textarea>
+        <mat-error *ngIf="content.invalid">Please enter the correct input</mat-error>
+
+      </mat-form-field>
+      <button mat-raised-button color="accent" type="submit"  [disabled]="!postD.valid">Save Post</button>
+  </form>
+
+</mat-card>
+
+
+
+<!-- <hr> -->
+
+<!-- <p>{{newPost}}</p> -->
