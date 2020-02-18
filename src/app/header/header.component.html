@@ -2,7 +2,9 @@
   <span> <a routerLink="" routerLinkActive="mat-accent"> My Assignments</a>
     </span>
     <ul>
-      <li ><a mat-button routerLink="/create" routerLinkActive="mat-accent">New Post</a></li>
-    </ul>
-
+      <li ><a mat-button routerLink="/create" >New Post</a></li>
+         </ul>
+         <li ><a mat-button routerLink="/create"  (click)= "RegisterIn()" >Register</a></li>
+         <li ><a mat-button routerLink="/create"  (click)= "LogIn()" >LogIn</a></li>
+         <li ><a mat-button routerLink="/create"  (click)= "LogOut()" >LogOut</a></li>
 </mat-toolbar>

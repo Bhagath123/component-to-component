@@ -14,6 +14,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 export class postCreateComponent implements OnInit {
   editTitle: any = ' ';
   editContent: any = '';
+  editimageUrl: any = '' ;
   form: FormGroup;
   post: Post;
    imagePreview = null ;
@@ -33,11 +34,14 @@ ngOnInit() {
               this.mode = 'edit';
               this.postId = paramMap.get('postId');
               this.postService.getPost(this.postId).subscribe(postData => {
-              this.post =  { id: postData._id , title: postData.title , content: postData.content };
+              this.post =  { id: postData._id ,
+                title: postData.title ,
+                content: postData.content,
+                imageUrl: postData.imageUrl };
               this.editTitle = postData.title;
               this.editContent = postData.content;
-
-              this.form.setValue({title: this.post.title , content: this.post.content});
+              this.editimageUrl = postData.imageUrl;
+              this.form.setValue({title: postData.title , content: postData.content, image: this.post.imageUrl});
 
               });
 
@@ -59,6 +63,7 @@ onImagePicked(event: Event) {
   reader.readAsDataURL(file);
 }
 onSaveevent() {
+
     if (this.form.invalid) {
       return;
     }
@@ -67,7 +72,7 @@ onSaveevent() {
         }
  // tslint:disable-next-line: one-line
  else{
-  this.postService.updatedPost(this.postId, this.form.value.title, this.form.value.content );
+  this.postService.updatedPost(this.postId, this.form.value.title, this.form.value.content, this.form.value.image );
  }
     this.form.reset();
   }

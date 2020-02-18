@@ -1,3 +1,4 @@
+const path=require('path');
 const express= require('express');
 const bodyparser=require('body-parser');
 
@@ -7,7 +8,7 @@ const routeModule=require('./Router/route');
 
 
 
-
+app.use('/images',express.static(path.join("backend/images")));
 
 
 

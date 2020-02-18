@@ -1,0 +1,16 @@
+img{
+  width: 100%;
+}
+.post-image img{
+  width: 100%;
+}
+mat-accordion{
+  position: relative;
+  top: 0;
+}
+.mat-accordion .mat-expansion-panel:last-of-type {
+
+  position: relative !important;
+  top: 18px !important;
+
+}

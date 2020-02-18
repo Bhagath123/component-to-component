@@ -1,0 +1,121 @@
+<div class="col-md-4 offset-4 card mt-2">
+<div class="card-body">
+
+  <h1 class="text-center">Registration</h1>
+  <div class="" *ngIf="authError" >
+    <p class="alert alert-danger">{{authError.message}}</p>
+   </div>
+<form  (ngSubmit)="authService.SignUp(email.value, pass.value)">
+  <div class="form-group">
+<label for="name">Name</label>
+<input type="text" id="name" ngModel name="name" class="form-control"  required #name="ngModel">
+</div>
+<div *ngIf="name.invalid && (name.dirty || name.touched)"
+    class="alert alert-danger">
+  <div *ngIf="name.errors.required">
+    Name is required.
+  </div>
+</div>
+<div class="">
+<label>Please select the role</label>
+<select name="" id="" class="form-control">
+<option value="<-- please select -->"></option>
+<option *ngFor="let role of roles">{{role}}</option>
+</select>
+</div>
+<div class="form-group">
+  <label for="class">class</label>
+  <input type="text" id="class" ngModel name="class" class="form-control" required #class="ngModel">
+  </div>
+  <div *ngIf="class.invalid && (class.dirty || class.touched)"
+    class="alert alert-danger">
+  <div *ngIf="class.errors.required">
+    class is required.
+  </div>
+</div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" id="email" ngModel name="email" class="form-control" required #email="ngModel">
+    </div>
+    <div *ngIf="email.invalid && (email.dirty || email.touched)"
+    class="alert alert-danger">
+  <div *ngIf="email.errors.required">
+    email is required.
+  </div>
+</div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" ngModel name="password" class="form-control" required #pass="ngModel">
+      </div>
+      <div *ngIf="pass.invalid && (pass.dirty || pass.touched)"
+      class="alert alert-danger">
+    <div *ngIf="pass.errors.required">
+      password is required.
+    </div>
+  </div>
+      <div class="form-group">
+        <button type="submit" class="form-control btn-success">Register </button>
+      </div>
+      <div class="redirectToLogin">
+        <span>Already have an account? <a class="redirect" routerLink="/login">Log In</a></span>
+      </div>
+</form>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+<!--
+
+
+<div class="displayTable">
+  <div class="displayTableCell">
+
+    <div class="authBlock">
+      <h3>Sign Up</h3>
+
+      <div class="formGroup">
+        <input type="email" class="formControl" placeholder="Email Address" #userEmail required>
+      </div>
+
+      <div class="formGroup">
+        <input type="password" class="formControl" placeholder="Password" #userPwd required>
+      </div>
+
+      <div class="formGroup">
+        <input type="button" class="btn btnPrimary" value="Sign Up" (click)="authService.SignUp(userEmail.value, userPwd.value)">
+      </div>
+
+      <div class="formGroup">
+        <span class="or"><span class="orInner">Or</span></span>
+      </div>
+
+       Continue with Google -->
+      <!-- <div class="formGroup">
+        <button type="button" class="btn googleBtn" (click)="authService.GoogleAuth()">
+          <i class="fab fa-google-plus-g"></i>
+          Continue with Google
+        </button>
+      </div> -->
+
+      <!-- Continue with Facebook -->
+      <!-- <div class="formGroup">
+        <button type="button" class="btn facebookBtn" (click)="authService.FacebookAuth()">
+          <i class="fab fa-facebook"></i>
+          Continue with Facebook
+        </button>
+      </div> -->
+    <!-- </div>
+
+    <div class="redirectToLogin">
+      <span>Already have an account? <span class="redirect" routerLink="/login">Log In</span></span>
+    </div>
+  </div>
+
+</div> -->

@@ -28,28 +28,43 @@ const storage =multer.diskStorage({
 });
 
 router.post('',multer({storage:storage}).single("image"),(req,res,next)=>{
+  const url = req.protocol + "://" +req.get('host');
   const post =new Post({
     title:req.body.title,
-    content:req.body.content
+    content:req.body.content,
+    imageUrl: url + "/images/" +req.file.filename
   });
   post.save().then(result =>{
     res.status(201)
     .json(
-      {message:"post added succcessfully",
-       prodId:result._id
+       { message:"post added succcessfully", post:{
+         ...result,
+         id:result._id,
+
+       }
     });
   });
   });
-  router.put('/:id',(req,res,next)=>{
+
+  router.put('/:id',multer({storage:storage}).single("image"),(req,res,next)=>{
+       let  imageUrl = req.body.imageUrl;
+    if(req.file){
+  const url = req.protocol + "://" +req.get('host');
+  imageUrl = url+ "/images" +req.file.filename
+    }
     const post=new Post({
       _id:req.body.id,
       title:req.body.title,
-      content:req.body.content
-    })
+      content:req.body.content,
+      imageUrl:imageUrl
+    });
+    console.log(post);
   Post.updateOne({_id:req.params.id},post).then(result=>{
     console.log(result);
     res.status(200).json({message:"this is successfully updated"})
 
+  }).catch(err =>{
+    console.log(err);
   })
   });
 

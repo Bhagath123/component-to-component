@@ -9,6 +9,10 @@ const PostShema=mongoose.Schema({
   content:{
     type:String,
     required:true
+  },
+  imageUrl:{
+    type:String,
+    required:true
   }
 })
 module.exports=mongoose.model('Post',PostShema);

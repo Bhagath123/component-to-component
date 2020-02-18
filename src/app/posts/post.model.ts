@@ -1,8 +1,10 @@
  export interface Post {
    // tslint:disable-next-line: ban-types
-   id: String ;
+   id: string ;
   // tslint:disable-next-line: ban-types
-  title: String ;
+  title: string ;
   // tslint:disable-next-line: ban-types
-  content: String;
+  content: string;
+  // tslint:disable-next-line: ban-types
+  imageUrl: any;
 }
