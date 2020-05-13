@@ -1,0 +1,21 @@
+<div class="col-md-8 offset-2 card mt-2">
+  <div class="card-body">
+<form class="form-inline" (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <div class="form-group mb-2">
+    <label for="classNo" class="sr-only">ClassNo</label>
+    <input class="form-control" id="classNo" placeholder="classNo ex:1" class="classNo" ngModel name="classNo">
+  </div>
+  <div class="form-group mx-sm-3 mb-2">
+    <label for="section" class="sr-only">Section</label>
+    <input class="form-control" id="section" placeholder="section ex:a" class="section" ngModel name="section">
+  </div>
+   <button type="submit" class="btn btn-primary mb-2">Generate Student Data</button>
+
+  <h4 class="or">or</h4>
+
+  <button type="submit" class="btn btn-primary mb-2 teacher"  (click)="teacherSubmit()"  >Click here to Generate Teacher Data</button>
+</form>
+
+</div>
+</div>
+

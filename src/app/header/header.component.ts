@@ -22,4 +22,10 @@ export class HeaderComponent  implements OnInit {
     RegisterIn() {
       this.router.navigate(['register']) ;
     }
+    AddSection() {
+      this.router.navigate(['Add-section-to-teacher']);
+    }
+    GetData() {
+      this.router.navigate(['Get-Section-Wise-Data']);
+    }
 }

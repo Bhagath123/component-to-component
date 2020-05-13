@@ -1,3 +1,4 @@
+import { AddToTeacherComponent } from './auth/AddingClass/add-to-teacher/add-to-teacher.component';
 import { AuthService } from './auth/auth.service';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -17,12 +18,16 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
-
 import { from } from 'rxjs';
 import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ForgetPasswordComponent } from './auth/forget-password/forget-password.component';
 import { VerifyEmailComponent } from './auth/verify-email/verify-email.component';
+import { EditAndDeleteComponent } from './EditAndDeleteData/edit-and-delete/edit-and-delete.component';
+import { StudentDataComponent } from './EditAndDeleteData/Data/Teacher-details/Teacher-details.component';
+import { DisplayAndEditComponent } from './EditAndDeleteData/display-and-edit/display-and-edit.component';
+import { DisplayStudentDataComponent } from './EditAndDeleteData/display-student-data/display-student-data.component';
+
 
 
 @NgModule({
@@ -35,6 +40,12 @@ import { VerifyEmailComponent } from './auth/verify-email/verify-email.component
     LoginComponent,
     ForgetPasswordComponent,
     VerifyEmailComponent,
+    // AddToTeacherComponent,
+    AddToTeacherComponent,
+    EditAndDeleteComponent,
+    StudentDataComponent,
+    DisplayAndEditComponent,
+    DisplayStudentDataComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +60,7 @@ import { VerifyEmailComponent } from './auth/verify-email/verify-email.component
      ReactiveFormsModule, AngularFirestoreModule, AngularFireAuthModule, AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
   exports: [AppRoutingModule],
-  providers: [AuthService],
+  providers: [AuthService, postService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

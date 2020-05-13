@@ -1,0 +1,22 @@
+<div *ngIf="datas.length>0">
+  <table class="table table-hover" >
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+
+    <tbody *ngFor="let item of  datas">
+      <tr >
+        <td>{{item.name}}</td>
+        <td>{{item.email}}</td>
+        <td><button class="btn-success">Edit</button></td>
+        <td><button class="btn-danger">Delete</button></td>
+      </tr>
+
+    </tbody>
+  </table>
+  </div>

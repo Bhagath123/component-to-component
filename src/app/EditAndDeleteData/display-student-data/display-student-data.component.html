@@ -1,0 +1,33 @@
+<div *ngIf="datas.length>0 else elseBlock ">
+  <table class="table table-hover" >
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Class</th>
+        <th scope="col">Section</th>
+        <th scope="col">Email</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+
+    <tbody *ngFor="let item of  datas">
+      <!-- <form (ngSubmit)="onUpdate(f)" #f="ngForm"> -->
+      <tr >
+        <td *ngIf="item._id === editId"> <input type="text" #name  [(ngModel)]="item.name"></td>
+        <td  *ngIf="item._id !== editId" (click)="Edit(item._id)">{{item.name}}</td>
+        <td *ngIf="item._id === editId"> <input type="text" #classNo [(ngModel)]="item.classNo"></td>
+        <td  *ngIf="item._id !==editId" (click)="Edit(item._id)">{{item.classNo}}</td>
+        <td *ngIf="item._id === editId"> <input type="text" #sectionNo  [(ngModel)]="item.sectionNo"></td>
+        <td *ngIf="item._id !==editId" (click)="Edit(item._id)">{{item.sectionNo}}</td>
+        <!-- <td *ngIf="item._id === editId"> <input type="text" [(ngModel)]="item.email"></td> -->
+        <td >{{item.email}}</td>
+        <td><button class="btn-success"  (click)="onUpdate(item.name,item.classNo,item.sectionNo)">Update</button></td>
+        <td><button class="btn-danger" (click)="onDelete(item._id,item.classNo,item.sectionNo)">Delete</button></td>
+      </tr>
+    <!-- </form> -->
+   </tbody>
+
+  </table>
+  </div>
+  <ng-template #elseBlock>There is no student data please <a (click)="onClick()" class="font-italic text-primary" > click here </a> to go to form</ng-template>

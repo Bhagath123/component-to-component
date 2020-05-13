@@ -1,15 +1,27 @@
+import { StudentData } from './../EditAndDeleteData/studentData.model';
+// tslint:disable-next-line: import-blacklist
+// import * as Rx from 'rxjs/Rx';
+import { from, Observable, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
+
 import { Router } from '@angular/router';
 import { Post } from './post.model';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+// import { map } from 'rxjs/operators';
+
+import { EmailValidator } from '@angular/forms';
 @Injectable({providedIn: 'root'})
 // tslint:disable-next-line: class-name
 export class postService {
  private  posts: Post[] = [];
+ private Details = [];
+ private DetailsUpdate = new Subject();
+//  asyncEvents$: Observable<StudentData[]>;
  private postUpdate = new Subject<Post[]>();
 
+//  role = 'Teacher';
 constructor(private http: HttpClient, private router: Router) {}
 
  getPosts() {
@@ -114,5 +126,69 @@ addpost(title: string, content: string, image: File) {
  }
 
 
+ registerStudentData(name, classNo, sectionNo, email, role) {
+   const studentRegister = {name, classNo, sectionNo, email, role };
+   this.http.post('http://localhost:3000/api/posts/studentDetails', studentRegister).subscribe(data => {
+   console.log(data);
+
+ }) ;
+ }
+ registerTeacherData(name, email, role) {
+
+const teacherRegister = { name, email, role} ;
+this.http.post('http://localhost:3000/api/posts/teacherDetails', teacherRegister).subscribe(data => {
+  console.log(data);
+})  ;
+ }
+
+updateRegisterStudentData(classId, sectionId, name, classNo, sectionNo, email, role) {
+const updatedresult = {classId, sectionId, name, classNo, sectionNo, email, role } ;
+this.http.put('http://localhost:3000/api/posts/' + classId + '/' + sectionId, updatedresult ).subscribe(data => {
+  console.log(data);
+
+});
+
+}
+
+addSectionToTeacher(email, classId, sectionId) {
+  const details = {email , classId , sectionId } ;
+  this.http.post(`http://localhost:3000/api/posts/Add-section-to-teacher/${email}/${classId}/${sectionId}`, details).subscribe(data => {
+ console.log(data);
+
+
+  });
+}
+getStudentDetailsSectionWise(classNo, section) {
+  // tslint:disable-next-line: deprecation
+  return this.http.get<any[]>(`http://localhost:3000/api/posts/GetStudentData/${classNo}/${section}`).subscribe(data => {
+    this.Details = data;
+    this.DetailsUpdate.next([...data]);
+  });
+ }
+ updateGetStudentDetailsSectionWise() {
+ return this.DetailsUpdate.asObservable();
+ }
+getStudentDetails(id: string) {
+  return this.http.get<{_id: string , name: string , classNo: string , email: string , sectionNo: string}>
+  (`http://localhost:3000/api/posts/StuentDetails/${id}`);
+}
+updateStudentDetails(id: string, name: string, classNo: string, sectionNo: string) {
+  const  postData = {name, classNo, sectionNo};
+  return this.http.put(`http://localhost:3000/api/posts/UpdateStuentDetails/${id}`, postData).subscribe(response => {
+    // this.DetailsUpdate =
+  });
+
+}
+deleteStudentPost(studentId: string, classId: string, sectionId: string) {
+  this.http.delete('http://localhost:3000/api/posts/DeleteStuentDetails/'  + studentId).subscribe(() => {
+   const DetailsUpdate = this.Details.filter(Details =>  Details.id !== studentId);
+   this.Details = DetailsUpdate;
+   this.DetailsUpdate.next([...this.Details]);
+   this.http.put('http://localhost:3000/api/posts/DeleteStuentDetails/' + classId + '/' + sectionId + '/' + studentId, this.DetailsUpdate)
+  });
+}
+getTeacherDetails() {
+return this.http.get(`http://localhost:3000/api/posts/GetTeacherData/Teacher`);
+}
 
 }

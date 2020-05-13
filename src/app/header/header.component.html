@@ -3,7 +3,10 @@
     </span>
     <ul>
       <li ><a mat-button routerLink="/create" >New Post</a></li>
+
          </ul>
+         <li ><a mat-button routerLink="/create" (click)="GetData()" >Get Student And Teacher Data</a></li>
+         <li ><a mat-button routerLink="/create" (click)="AddSection()" >Add Class To Teacher</a></li>
          <li ><a mat-button routerLink="/create"  (click)= "RegisterIn()" >Register</a></li>
          <li ><a mat-button routerLink="/create"  (click)= "LogIn()" >LogIn</a></li>
          <li ><a mat-button routerLink="/create"  (click)= "LogOut()" >LogOut</a></li>

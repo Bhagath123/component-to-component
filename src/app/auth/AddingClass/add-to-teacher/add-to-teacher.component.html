@@ -1,0 +1,22 @@
+<div class="col-md-4 offset-4 card mt-4">
+  <div class="card-body">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+      <h5 class="text-center">Add Section To Teacher</h5>
+      <div class="form-group">
+        <label  for="email">Teacher email</label>
+        <input type="text" placeholder="please enter correct teacher email" id="email" class="form-control" ngModel name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="Class">Class</label>
+      <input type="text" class="form-control" id="Class" placeholder="please enter class number" ngModel name="class" required>
+      </div>
+      <div class="form-group">
+        <label for="SectionNo">SectionNo</label>
+        <input type="text" class="form-control" id="SectionNo" placeholder="please enter section Id" ngModel name="section" required>
+      </div>
+      <div class="form-group">
+        <button class="form-control btn-success">Add To Teacher</button>
+      </div>
+    </form>
+  </div>
+</div>

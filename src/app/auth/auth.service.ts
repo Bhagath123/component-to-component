@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 
 export class AuthService {
   userData: any; // Save logged in user data
+   role: string ;
 
   constructor(
     public afs: AngularFirestore,   // Inject Firestore service
@@ -93,9 +94,9 @@ export class AuthService {
     const userData = {
       uid: user.uid,
       email: user.email,
-      displayName: user.displayName,
+      // displayName: user.displayName,
       emailVerified: user.emailVerified,
-      roles: ''
+      roles: this.role
     };
     console.log(userData);
 
@@ -111,5 +112,11 @@ export class AuthService {
       this.router.navigate(['login']);
     });
   }
+getRole(roledata) {
+ this.role = roledata;
+}
+
+
+
 
 }
